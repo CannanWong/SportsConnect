@@ -1,0 +1,44 @@
+stages:
+  - build
+  - test
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+build:
+  image: node:latest
+  stage: build
+  script:
+    - echo "Installing dependencies......"
+    - npm install
+    - echo "Building react app......"
+    - npm run build
+  artifacts:
+    paths:
+      - ./build
+  only:
+    - master
+
+test:
+  image: node:latest
+  stage: test
+  script:
+    - echo "Running react test suite......"
+    - npm run test
+  only:
+    - master
+# deploy:
+#   image: ruby:latest
+#   stage: deploy
+#   variables:
+#     HEROKU_API_KEY: $Heroku_key
+#   script:
+#     - echo "Deploying to heroku......"
+#     - gem install dpl-heroku
+#     # TODO: Change the app name to our app name
+#     - dpl --provider=heroku --app=react-heroku-deploy --api-key=$HEROKU_API_KEY
+#     - echo "Deployed successfully......"
+#   only:
+#     - master
