@@ -1,4 +1,3 @@
-
 function EventsList() {
     return (
     	<ul className="list-group">
