@@ -3,10 +3,6 @@ stages:
     - test
     - deploy
 
-cache:
-  paths:
-    - node_modules/
-
 build:
   image: node:latest
   stage: build
@@ -15,9 +11,6 @@ build:
     - npm install
     - echo "Building react app......"
     - npm run build
-  artifacts:
-    paths:
-      - ./build
   only:
     - master
 
