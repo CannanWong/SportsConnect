@@ -1,6 +1,6 @@
-import { firestore } from "../firebase_setup/firebase";
-import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+// import { firestore } from "../firebase_setup/firebase";
+// import { useState, useEffect } from "react";
+// import { collection, getDocs } from "firebase/firestore";
 
 function EventsList() {
 	return (
