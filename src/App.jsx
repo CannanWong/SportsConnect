@@ -4,10 +4,23 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (
-    <div>
-      <h1>EVENTS</h1>
-      <EventsList />
-      <NewEventForm />
+    <div class="container text-center">
+			<div class="row">
+				<div class="col"> </div>
+				<div class="col-6"> 
+          <h2>EVENTS</h2>
+          <EventsList />
+        </div>
+        <div class="col"> </div>
+      </div>
+      <div class="row">
+        <div class="col"> </div>
+				<div class="col-6"> 
+					<h2>ADD NEW EVENT</h2>
+          <NewEventForm />
+        </div>
+				<div class="col"> </div>
+			</div>
     </div>
   );
 }
