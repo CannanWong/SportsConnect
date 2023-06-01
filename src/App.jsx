@@ -5,14 +5,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 function App() {
   return (
     <div className="container text-center">
+      <hr/>
+      <br/>
 			<div className="row">
 				<div className="col"> </div>
 				<div className="col-6"> 
           <h2>EVENTS</h2>
+          <br/>
           <EventsList />
         </div>
         <div className="col"> </div>
       </div>
+      <hr/>
+      <br/>
       <div className="row">
         <div className="col"> </div>
 				<div className="col-6"> 
@@ -21,6 +26,9 @@ function App() {
         </div>
 				<div className="col"> </div>
 			</div>
+      <br/>
+      <hr/>
+      <br/>
     </div>
   );
 }
