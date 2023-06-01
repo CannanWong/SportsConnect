@@ -31,30 +31,30 @@ function NewEventForm () {
   }
  
   return (
-	<form onSubmit={submithandler} class="row g-3">
-		<div class="col-md-12">
-			<label class="form-label">Event Title:</label>
-			<input type= "text" class="form-control" ref={title} />
+	<form onSubmit={submithandler} className="row g-3">
+		<div className="col-md-12">
+			<label className="form-label">Event Title:</label>
+			<input type= "text" className="form-control" ref={title} />
 		</div>
-		<div class="col-md-4">
-			<label class="form-label">Date:</label>
-			<input type= "date" class="form-control" ref={date} />
+		<div className="col-md-4">
+			<label className="form-label">Date:</label>
+			<input type= "date" className="form-control" ref={date} />
 		</div>
-		<div class="col-md-4">
-			<label class="form-label">Start Time:</label>
-			<input type= "time" class="form-control" ref={start} />
+		<div className="col-md-4">
+			<label className="form-label">Start Time:</label>
+			<input type= "time" className="form-control" ref={start} />
 		</div>
-		<div class="col-md-4">
-			<label class="form-label">End Time:</label>
-			<input type= "time" class="form-control" ref={end} />
+		<div className="col-md-4">
+			<label className="form-label">End Time:</label>
+			<input type= "time" className="form-control" ref={end} />
 		</div>
-		<div class="col-md-12">
-			<label class="form-label">Location:</label>
-			<input type= "text" class="form-control" ref={location} />
+		<div className="col-md-12">
+			<label className="form-label">Location:</label>
+			<input type= "text" className="form-control" ref={location} />
 		</div>
-		<div class="col-md-12">
-			<label class="form-label">Event Description:</label>
-			<textarea class="form-control" rows="3" ref={description}></textarea>
+		<div className="col-md-12">
+			<label className="form-label">Event Description:</label>
+			<textarea className="form-control" rows="3" ref={description}></textarea>
 		</div>
 		<button type = "submit">Add Event</button>
 	</form>
