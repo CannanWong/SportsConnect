@@ -1,11 +1,16 @@
 import { addDoc, collection } from "@firebase/firestore"
-import { firestore } from "../firebase_setup/firebase"
+import { db } from "../firebase_setup/firebase"
  
-const handleSubmit = (testdata) => {
-    const ref = collection(firestore, "test_data") // Firebase creates this automatically
+const handleSubmit = (event) => {
+    const ref = collection(db, "events") // Firebase creates this automatically
  
     let data = {
-        testData: testdata
+        title: event.title,
+        description: event.description,
+        date: event.date,
+        startTime: event.start,
+        endTime: event.end,
+        location: event.location,
     }
     
     try {
