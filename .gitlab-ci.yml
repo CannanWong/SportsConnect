@@ -1,36 +1,36 @@
 stages:
-  #   - build
-  #   - test
+    - build
+    - test
   - deploy
 
-# cache:
-#   paths:
-#     - node_modules/
+cache:
+  paths:
+    - node_modules/
 
-# build:
-#   image: node:latest
-#   stage: build
-#   script:
-#     - echo "Installing dependencies......"
-#     - npm install
-#     - echo "Building react app......"
-#     - npm run build
-#   artifacts:
-#     paths:
-#       - ./build
-#   only:
-#     - master
+build:
+  image: node:latest
+  stage: build
+  script:
+    - echo "Installing dependencies......"
+    - npm install
+    - echo "Building react app......"
+    - npm run build
+  artifacts:
+    paths:
+      - ./build
+  only:
+    - master
 
-# test:
-#   image: node:latest
-#   stage: test
-#   script:
-#     - echo "Installing dependencies......"
-#     - npm install
-#     - echo "Running react test suite......"
-#     - npm run test
-#   only:
-#     - master
+test:
+  image: node:latest
+  stage: test
+  script:
+    - echo "Installing dependencies......"
+    - npm install
+    - echo "Running react test suite......"
+    - npm run test
+  only:
+    - master
 
 deploy:
   image: ruby:latest
