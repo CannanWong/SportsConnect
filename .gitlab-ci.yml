@@ -31,16 +31,17 @@ test:
     - npm run test
   only:
     - master
-# deploy:
-#   image: ruby:latest
-#   stage: deploy
-#   variables:
-#     HEROKU_API_KEY: $Heroku_key
-#   script:
-#     - echo "Deploying to heroku......"
-#     - gem install dpl-heroku
-#     # TODO: Change the app name to our app name
-#     - dpl --provider=heroku --app=react-heroku-deploy --api-key=$HEROKU_API_KEY
-#     - echo "Deployed successfully......"
-#   only:
-#     - master
+deploy:
+  stage: deploy
+  variables:
+    HEROKU_API_KEY: $HEROKU_API_KEY
+  script:
+    - echo "Deploying to Heroku..."
+    - apt-get update -qy
+    - apt-get install -y curl
+    - curl https://cli-assets.heroku.com/install.sh | sh
+    - heroku login -i
+    - heroku git:remote -a drp13-2023
+    - git push heroku master
+  only:
+    - master
