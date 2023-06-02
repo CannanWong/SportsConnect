@@ -10,7 +10,7 @@ function App() {
 			<div className="row">
 				<div className="col"> </div>
 				<div className="col-6"> 
-          <h2>EVENTS</h2>
+          <h2>EVENTS!!!</h2>
           <br/>
           <EventsList />
         </div>
