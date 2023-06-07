@@ -1,8 +1,7 @@
 stages:
-    - build
-    - test
-    - dev
-    - deploy
+  - build
+  - test
+  - deploy
 
 build:
   image: node:latest
@@ -14,6 +13,7 @@ build:
     - npm run build
   only:
     - master
+    - dev
 
 test:
   image: node:latest
@@ -25,8 +25,9 @@ test:
     - npm run test
   only:
     - master
+    - dev
 
-dev:
+deploy-dev:
   image: ruby:latest
   stage: deploy
   script:
@@ -36,7 +37,7 @@ dev:
   only:
     - dev
 
-deploy:
+deploy-prod:
   image: ruby:latest
   stage: deploy
   script:
