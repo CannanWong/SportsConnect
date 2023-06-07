@@ -1,6 +1,7 @@
 stages:
     - build
     - test
+    - dev
     - deploy
 
 build:
@@ -25,12 +26,22 @@ test:
   only:
     - master
 
+dev:
+  image: ruby:latest
+  stage: deploy
+  script:
+    - echo "Deploying to Heroku (dev)..."
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP_DEV --api-key=$HEROKU_API_KEY
+  only:
+    - dev
+
 deploy:
   image: ruby:latest
   stage: deploy
   script:
     - echo "Deploying to Heroku..."
     - gem install dpl
-    - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY
+    - dpl --provider=heroku --app=$HEROKU_APP_DEPLOY --api-key=$HEROKU_API_KEY
   only:
     - master
