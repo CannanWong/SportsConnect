@@ -14,8 +14,6 @@ function NewEventForm (props) {
 	
 	const submithandler = (e) => {
     e.preventDefault();
-		console.log(location);
-
 		// Create an event object
 		const event = {
 			title: title.current.value,

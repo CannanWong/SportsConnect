@@ -15,11 +15,9 @@ function EventsMap(props) {
 
 	const handlePlaceSelect = () => {
     const place = autocompleteRef.current.getPlace();
-		console.log(place);
     if (place.geometry && place.geometry.location && mapRef.current) {
       const location = place.geometry.location;
       const newCenter = { lat: location.lat(), lng: location.lng() };
-			console.log(newCenter);
       mapRef.current.panTo(newCenter);
     }
   };
