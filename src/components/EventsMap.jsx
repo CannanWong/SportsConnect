@@ -1,9 +1,11 @@
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function EventsMap(props) {
 	const mapRef = useRef(null);
 	const autocompleteRef = useRef(null);
+	const navigate = useNavigate();
 
 	const handleScriptLoad = () => {
     const autocompleteInput = document.getElementById('autocomplete-input-eventsMap');
@@ -21,6 +23,10 @@ function EventsMap(props) {
       mapRef.current.panTo(newCenter);
     }
   };
+
+  	const goToEvent = (id) => {
+		  navigate("/event", {state:{ entryId: id }})
+	  }
 
 	return (
 		<div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "end" }}>
@@ -43,7 +49,8 @@ function EventsMap(props) {
 			>
 				{props.events.map(item => 
 					<Marker
-						position={{ lat: item.location.latitude, lng: item.location.longitude }}
+						position={{ lat: item[0].location.latitude, lng: item[0].location.longitude }}
+						onClick={() => goToEvent(item[1])}
 					/>
 				)}
 			</Map>
