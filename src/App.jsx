@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-// import EventsList from "./components/EventsList";
 import NewEventForm from "./components/NewEventForm";
-import EventsMap from "./components/EventsMap";
+import ViewToggle from "./components/ViewToggle";
 import { fetchDocs } from "./handles/fetchDocs";
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -20,12 +19,7 @@ function App(props) {
 				<div className="col-6"> 
           <h2>EVENTS!!!</h2>
           <br/>
-          {/* <EventsList events={events} /> */}
-          <EventsMap 
-            events={events} 
-            google={props.google}
-						initialCenter={{ lat: 51.506729, lng: -0.171589 }} // Specify initial center coordinates
-          />
+          <ViewToggle events={events} google={props.google} />
         </div>
       </div>
       <hr/>

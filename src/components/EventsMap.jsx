@@ -27,7 +27,7 @@ function EventsMap(props) {
 	  }
 
 	return (
-		<div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "end" }}>
+		<div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
 			<input
         id="autocomplete-input-eventsMap"
         type="text"
