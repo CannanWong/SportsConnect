@@ -2,16 +2,38 @@ import { useRef, useState } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 function LocationPicker(props) {
-  const [position, setPosition] = useState(null);
   const mapRef = useRef(null);
+	const autocompleteRef = useRef(null);
+
+	const handleScriptLoad = () => {
+    const autocompleteInput = document.getElementById('autocomplete-input-newEvent');
+    autocompleteRef.current = new props.google.maps.places.Autocomplete(autocompleteInput);
+    autocompleteRef.current.addListener('place_changed', handlePlaceSelect);
+  };
+
+	const handlePlaceSelect = () => {
+    const place = autocompleteRef.current.getPlace();
+    if (place.geometry && place.geometry.location && mapRef.current) {
+      const location = place.geometry.location;
+      const coords = { lat: location.lat(), lng: location.lng() };
+      mapRef.current.panTo(coords);
+			props.onChange(coords);
+    }
+  };
   
 	const handleMapClick = (_, map, clickEvent) => {
     const { latLng } = clickEvent;
-    setPosition(latLng);
-		props.onChange(latLng);
+		props.onChange({ lat: latLng.lat(), lng: latLng.lng()});
   };
 
 	return (
+		<div style={{ justifyContent: "start" }}>
+			<input
+        id="autocomplete-input-newEvent"
+        type="text"
+        placeholder="Search here or click on the map to select a location"
+        style={{ width: '100%', height: '40px', fontSize: '16px', padding: '0 10px' }}
+      />
 			<Map
 				google={props.google}
 				zoom={14}
@@ -19,25 +41,25 @@ function LocationPicker(props) {
 				onClick={handleMapClick}
 				onReady={(mapProps, map) => {
 					mapRef.current = map;
+					handleScriptLoad();
 				}}
 				style={{ overflowX: "hidden", overflowY: "hidden" }}
-				containerStyle={{ maxWidth: "48%", maxHeight: "400px" }}
+				containerStyle={{ maxWidth: "48.7%", maxHeight: "400px" }}
 			>
-				{position && (
+				{props.position && (
 					<Marker
-						position={position}
+						position={props.position}
 						draggable
 						onDragend={(t, map, coord) => {
-							setPosition(coord.latLng);
-							props.onChange(coord.latLng);
+							props.onChange({ lat: coord.latLng.lat(), lng: coord.latLng.lng()});
 						}}
 						onClick={(t, map, coord) => {
-							setPosition(null);
 							props.onChange(null);
 						}}
 					/>
 				)}
 			</Map>
+		</div>
   );
 };
 

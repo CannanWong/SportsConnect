@@ -14,6 +14,7 @@ function NewEventForm (props) {
 	
 	const submithandler = (e) => {
     e.preventDefault();
+		console.log(location);
 
 		// Create an event object
 		const event = {
@@ -21,7 +22,7 @@ function NewEventForm (props) {
 			date: date.current.value,
 			startTime: start.current.value,
 			endTime: end.current.value,
-			location: new GeoPoint(location.lat(), location.lng()),
+			location: new GeoPoint(location.lat, location.lng),
 			description: description.current.value
 		};
 
@@ -41,40 +42,49 @@ function NewEventForm (props) {
   // };
  
   return (
-	<form onSubmit={submithandler} className="row g-3 align-items-center">
-		<div className="col-12">
-			<label className="form-label">Event Title:</label>
-			<input type= "text" className="form-control" ref={title} />
+		//  className="row g-3 align-items-center">
+	<form onSubmit={submithandler}>
+		<div className="row my-4 align-items-center">
+			<div className="col-12">
+				<label className="form-label">Event Title:</label>
+				<input type= "text" className="form-control" ref={title} />
+			</div>
 		</div>
-		<div className="col-4">
-			<label className="form-label">Date:</label>
-			<input type= "date" className="form-control" ref={date} />
+		<div className="row my-4 align-items-center">
+			<div className="col-4">
+				<label className="form-label">Date:</label>
+				<input type= "date" className="form-control" ref={date} />
+			</div>
+			<div className="col-4">
+				<label className="form-label">Start Time:</label>
+				<input type= "time" className="form-control" ref={start} />
+			</div>
+			<div className="col-4">
+				<label className="form-label">End Time:</label>
+				<input type= "time" className="form-control" ref={end} />
+			</div>
 		</div>
-		<div className="col-4">
-			<label className="form-label">Start Time:</label>
-			<input type= "time" className="form-control" ref={start} />
-		</div>
-		<div className="col-4">
-			<label className="form-label">End Time:</label>
-			<input type= "time" className="form-control" ref={end} />
-		</div>
-		<div className="row">
+		<div className="row my-4 align-items-center">
 			<div className="col-12">
 				<label className="form-label">Location:</label>
-				<div className="form-text">Click on the map to select a location</div>
 					<LocationPicker
 						google={props.google}
 						initialCenter={{ lat: 51.506729, lng: -0.171589 }} // Specify initial center coordinates
 						onChange={setLocation}
+						position={location}
 					/>
 				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 			</div>
 		</div>
-		<div className="col-12">
-			<label className="form-label">Event Description:</label>
-			<textarea className="form-control" rows="3" ref={description}></textarea>
+		<div className="row my-4 align-items-center">
+			<div className="col-12">
+				<label className="form-label">Event Description:</label>
+				<textarea className="form-control" rows="3" ref={description}></textarea>
+			</div>
 		</div>
-		<button type = "submit">Add Event</button>
+		<div className="row my-4 align-items-center">
+				<button type = "submit" className='btn btn-primary'>Add Event</button>
+		</div>
 	</form>
   );
 }
