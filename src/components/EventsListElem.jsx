@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function EventsListElem ({ event }) {
+function EventsListElem ({ event, id }) {
   return (
     <div className="card"> 
     {/* style="width: 18rem;"> */}
@@ -9,7 +9,7 @@ function EventsListElem ({ event }) {
         <h6 className="card-subtitle mb-2 text-body-secondary">{event.date} From: {event.startTime} To: {event.endTime}</h6>
         {/*<h6 className="card-subtitle mb-2 text-body-secondary">At: {event.location}</h6>*/}
         <p className="card-text">{event.description}</p>
-        <Link to='event' state={{ eventName: event.title }}>
+        <Link to='event' state={{ eventName: event.title, entryId: id }}>
           Find out more
         </Link>
       </div>

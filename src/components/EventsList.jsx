@@ -7,7 +7,7 @@ function EventsList(props) {
 		console.log(props.events);
 		return (
 			<div>
-				{props.events.map(item => <div> <EventsListElem event={item} /> <br/> </div>)}
+				{props.events.map(item => <div> <EventsListElem event={item[0]} id={item[1]} /> <br/> </div>)}
 			</div>
 		);
 	}	
