@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import Navbar from './Navbar'
 import Event from './Event';
 import 'bootstrap/dist/css/bootstrap.css'
 import { 
@@ -12,6 +13,7 @@ import {
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+    <Navbar />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/event" element={<Event />} />
