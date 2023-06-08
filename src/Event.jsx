@@ -20,10 +20,10 @@ function Event(props) {
     <div className="container text-center justify-content-center">
       <div className="card"> 
       <div className="card-body">
-        <h5 className="card-title">{currEvent.title}</h5>
-        <h6 className="card-subtitle mb-2 text-body-secondary">{currEvent.date} From: {currEvent.startTime} To: {currEvent.endTime}</h6>
+        <h2 className="card-title">{currEvent.title}</h2>
+        <h4 className="card-subtitle mb-2 text-body-secondary">{currEvent.date} From: {currEvent.startTime} To: {currEvent.endTime}</h4>
         <p className="card-text">{currEvent.description}</p>
-        <p className="interest-count">{count}</p>
+        <h3 className="card-text">{"Interested: "+count+" !"}</h3>
         {currEvent.location && 
         <EventLocationMap 
           google={props.google} 
