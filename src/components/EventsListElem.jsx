@@ -9,7 +9,7 @@ function EventsListElem ({ event, id }) {
         <h6 className="card-subtitle mb-2 text-body-secondary">{event.date} From: {event.startTime} To: {event.endTime}</h6>
         {/*<h6 className="card-subtitle mb-2 text-body-secondary">At: {event.location}</h6>*/}
         <p className="card-text">{event.description}</p>
-        <Link to='event' state={{ eventName: event.title, entryId: id }}>
+        <Link to='event' state={{ entryId: id }}>
           Find out more
         </Link>
       </div>

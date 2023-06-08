@@ -11,6 +11,7 @@ const handleSubmit = (event) => {
         startTime: event.start,
         endTime: event.end,
         location: event.location,
+        count: 0
     }
     
     try {
