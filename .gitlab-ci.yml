@@ -8,7 +8,7 @@ build:
   stage: build
   script:
     - echo "Installing dependencies......"
-    - npm install
+    - npm install --legacy-peer-deps
     - echo "Building react app......"
     - npm run build
   only:
@@ -20,7 +20,7 @@ test:
   stage: test
   script:
     - echo "Installing dependencies......"
-    - npm install
+    - npm install --legacy-peer-deps
     - echo "Running react test suite......"
     - npm run test
   only:
