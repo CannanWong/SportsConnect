@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import NewEventForm from "./components/NewEventForm";
 import ViewToggle from "./components/ViewToggle";
 import { fetchDocs } from "./handles/fetchDocs";
 import 'bootstrap/dist/css/bootstrap.css';
