@@ -14,8 +14,6 @@ function Event(props) {
 		fetchEvent(key.entryId, setCurrEvent, setCount)
 	}, [key.entryId])
 
-  console.log(currEvent)
-
   return (
     <div className="container text-center justify-content-center">
       <div className="card"> 
@@ -24,13 +22,14 @@ function Event(props) {
         <h4 className="card-subtitle mb-2 text-body-secondary">{currEvent.date} From: {currEvent.startTime} To: {currEvent.endTime}</h4>
         <p className="card-text">{currEvent.description}</p>
         <h3 className="card-text">{"Interested: "+count+" !"}</h3>
+        <br/><br/>
         {currEvent.location && 
         <EventLocationMap 
           google={props.google} 
           location={{ lat: currEvent.location.latitude, lng: currEvent.location.longitude }} 
         />}
         <br/><br/>
-        <button onClick={() => addCount(key.entryId, setCount)}>I'm interested!!</button>
+        <button onClick={() => addCount(key.entryId, setCount)} class="btn btn-success" >I'm interested!!</button>
       </div>
     </div>
     </div>

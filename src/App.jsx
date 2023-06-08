@@ -16,7 +16,7 @@ function App(props) {
       <br/>
 			<div className="row justify-content-center">
 				<div className="col-6"> 
-          <h2>EVENTS!!!</h2>
+          <h2>EVENTS</h2>
           <br/>
           <ViewToggle events={events} google={props.google} />
         </div>
