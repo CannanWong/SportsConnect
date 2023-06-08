@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
 import Event from './Event';
 import 'bootstrap/dist/css/bootstrap.css'
@@ -9,8 +9,7 @@ import {
   Route
 } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
@@ -18,6 +17,6 @@ root.render(
         <Route path="/event" element={<Event />} />
       </Routes>
     </Router>
-  </React.StrictMode>
+  </React.StrictMode>, document.getElementById('root')
 );
 
