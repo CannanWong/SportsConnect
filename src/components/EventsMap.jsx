@@ -1,5 +1,5 @@
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 function EventsMap(props) {
 	const mapRef = useRef(null);

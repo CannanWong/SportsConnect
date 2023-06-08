@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import EventsList from "./components/EventsList";
+// import EventsList from "./components/EventsList";
 import NewEventForm from "./components/NewEventForm";
 import EventsMap from "./components/EventsMap";
 import { fetchDocs } from "./handles/fetchDocs";
