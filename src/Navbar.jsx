@@ -1,20 +1,29 @@
 
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <div className="container-fluid text-left">
-      <Link to="/" style={{ color: 'Black', textDecoration: 'none' }}> <h2 text-align="left">SportConnect</h2></Link>
-      <nav className = "navbar">
-        <div className = "nav-elems">
-          <ul>
-            <li><NavLink to="/">Map View</NavLink></li>
-            <li>List view</li>
-            <li>Add events</li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mx-4">
+      <Link to="/" class="navbar-brand">SportConnect</Link>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class ="nav-item">
+            <Link to="/" class="nav-link">Home</Link>
+          </li>
+          <li class ="nav-item">
+            <Link class="nav-link">My Events</Link>
+          </li>
+          <li class="nav-item">
+            <Link class="nav-link">Previous Events</Link>
+          </li>
+          <Link to="newEvent"><button class="btn btn-outline-success my-2 my-sm-0 button-inline" type="submit">Add events</button></Link>
+        </ul>
+      </div>
+    </nav>
   );
 }
 

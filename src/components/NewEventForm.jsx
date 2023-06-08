@@ -21,7 +21,8 @@ function NewEventForm (props) {
 			startTime: start.current.value,
 			endTime: end.current.value,
 			location: new GeoPoint(location.lat, location.lng),
-			description: description.current.value
+			description: description.current.value,
+			count: 0
 		};
 
     handleSubmit('events', event);
@@ -41,6 +42,9 @@ function NewEventForm (props) {
  
   return (
 		//  className="row g-3 align-items-center">
+		<div className="row justify-content-center text-center">
+			<div className="col-6"> 
+					<h2>ADD NEW EVENT</h2>
 	<form onSubmit={submithandler}>
 		<div className="row my-4 align-items-center">
 			<div className="col-12">
@@ -84,6 +88,9 @@ function NewEventForm (props) {
 				<button type = "submit" className='btn btn-primary'>Add Event</button>
 		</div>
 	</form>
+
+	</div>
+	</div>
   );
 }
 

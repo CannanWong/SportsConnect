@@ -30,12 +30,6 @@ function App(props) {
       </div>
       <hr/>
       <br/>
-      <div className="row justify-content-center">
-				<div className="col-6"> 
-					<h2>ADD NEW EVENT</h2>
-          <NewEventForm />
-        </div>
-			</div>
       <br/>
       <hr/>
       <br/>
