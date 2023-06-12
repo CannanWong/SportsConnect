@@ -29,7 +29,11 @@ function Event(props) {
           location={{ lat: currEvent.location.latitude, lng: currEvent.location.longitude }} 
         />}
         <br/><br/>
-        <button onClick={() => addCount(key.entryId, setCount)} class="btn btn-success" >I'm interested!!</button>
+        <button onClick={() => addCount(key.entryId, setCount)} class="btn btn-primary m-1" data-bs-toggle="button" aria-pressed="true" autocomplete="off" >I'm interested!!</button>
+        <button class="btn btn-outline-primary m-1" >Group Chat Link</button>
+        <button type="button" class="btn btn-primary" data-toggle="button" data-bs-toggle="button" aria-pressed="true" autocomplete="off">
+  Single toggle
+</button>
       </div>
     </div>
     </div>
