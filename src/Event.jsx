@@ -2,13 +2,27 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useLocation } from 'react-router-dom';
 import { fetchEvent } from './handles/fetchEvent';
 import { useEffect, useState } from "react";
-import { addCount } from './handles/addInterested';
 import EventLocationMap from './components/EventLocationMap';
+import { ToggleButton } from '@material-ui/lab';
+import { styled } from '@material-ui/styles';
+import { modifyCount } from './handles/modifyCount';
 
 function Event(props) {
   const key = useLocation().state
   const [currEvent, setCurrEvent] = useState([])
   const [count, setCount] = useState([])
+  const [interested, setInterested] = useState(true)
+
+  const StyledToggle = styled(ToggleButton)({
+    "&&, &&:hover": {
+      color: "white",
+      backgroundColor: '#0d6efd'
+    },
+    "&.Mui-selected, &.Mui-selected:hover": {
+      color: "white",
+      backgroundColor: '#0a3ebd'
+    }
+  });
 
   useEffect(() => {
 		fetchEvent(key.entryId, setCurrEvent, setCount)
@@ -29,11 +43,8 @@ function Event(props) {
           location={{ lat: currEvent.location.latitude, lng: currEvent.location.longitude }} 
         />}
         <br/><br/>
-        <button onClick={() => addCount(key.entryId, setCount)} class="btn btn-primary m-1" data-bs-toggle="button" aria-pressed="true" autocomplete="off" >I'm interested!!</button>
-        <button class="btn btn-outline-primary m-1" >Group Chat Link</button>
-        <button type="button" class="btn btn-primary" data-toggle="button" data-bs-toggle="button" aria-pressed="true" autocomplete="off">
-  Single toggle
-</button>
+        <button class="btn btn-primary" data-bs-toggle="button" onClick={() => modifyCount(key.entryId, interested, setCount, setInterested)} >I'm interested!!</button>
+        <a href={"//"+currEvent.grpLink} class="btn btn-outline-primary m-1" >Group Chat Link</a>
       </div>
     </div>
     </div>
@@ -41,3 +52,13 @@ function Event(props) {
 }
  
 export default Event;
+
+/*<StyledToggle
+value="check"
+selected={selected}
+onChange={() => {
+  setSelected(!selected);
+}}
+>
+I'm interested!!!
+</StyledToggle>*/
