@@ -11,6 +11,7 @@ function NewEventForm (props) {
 	const end = useRef();
 	const [location, setLocation] = useState();
 	const description = useRef();
+	const grpLink = useRef();
 	
 	const submithandler = (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ function NewEventForm (props) {
 			endTime: end.current.value,
 			location: new GeoPoint(location.lat, location.lng),
 			description: description.current.value,
+			grpLink: grpLink.current.value,
 			count: 0
 		};
 
@@ -34,6 +36,7 @@ function NewEventForm (props) {
 		end.current.value = ""
 		setLocation(null);
 		description.current.value = ""
+		grpLink.current.value = ""
   };
 
   // const handleLocationChange = (newLocation) => {
@@ -82,6 +85,12 @@ function NewEventForm (props) {
 			<div className="col-12">
 				<label className="form-label">Event Description:</label>
 				<textarea className="form-control" rows="3" ref={description}></textarea>
+			</div>
+		</div>
+		<div className="row my-4 align-items-center">
+			<div className="col-12">
+				<label className="form-label">Group Chat Link:</label>
+				<input type= "text" className="form-control" ref={grpLink} />
 			</div>
 		</div>
 		<div className="row my-4 align-items-center">
