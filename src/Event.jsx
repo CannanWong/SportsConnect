@@ -3,8 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { fetchEvent } from './handles/fetchEvent';
 import { useEffect, useState } from "react";
 import EventLocationMap from './components/EventLocationMap';
-//import { ToggleButton } from '@material-ui/lab';
-//import { styled } from '@material-ui/styles';
 import { modifyCount } from './handles/modifyCount';
 import CommentSection from './components/CommentSection'
 import { fetchDocs } from './handles/fetchDocs';
@@ -15,18 +13,8 @@ function Event(props) {
   const [count, setCount] = useState([])
   const [interested, setInterested] = useState(true)
   const [comments, setComments] = useState([])
+  //const [showLink, setShow] = useState(false)
   const id = key.entryId
-
-  /*const StyledToggle = styled(ToggleButton)({
-    "&&, &&:hover": {
-      color: "white",
-      backgroundColor: '#0d6efd'
-    },
-    "&.Mui-selected, &.Mui-selected:hover": {
-      color: "white",
-      backgroundColor: '#0a3ebd'
-    }
-  });*/
 
   useEffect(() => {
 		fetchEvent(id, setCurrEvent, setCount)
@@ -60,7 +48,13 @@ function Event(props) {
                 />}
                 <br/>
                 <div class="d-grid gap-2">
-                  <button class="btn btn-primary w-100" data-bs-toggle="button" onClick={() => modifyCount(key.entryId, interested, setCount, setInterested)} >I'm interested!!</button>
+                  <button 
+                    class="btn btn-outline-danger w-100" 
+                    data-bs-toggle="button" 
+                    onClick={() => modifyCount(key.entryId, interested, setCount, setInterested)} >
+                    I'm interested!!
+                    <img src={require("./heart.png")} width="25" height="25" alt="Interested "/>
+                  </button>
                   <a href={"//"+currEvent.grpLink} class="btn btn-outline-primary w-100" >Group Chat Link</a>
                 </div>
               </div>
@@ -77,12 +71,10 @@ function Event(props) {
  
 export default Event;
 
-/*<StyledToggle
-value="check"
-selected={selected}
-onChange={() => {
-  setSelected(!selected);
-}}
->
-I'm interested!!!
-</StyledToggle>*/
+/*
+
+      <button type="button" class="btn btn-primary" onClick={() => {setShow(true)}}>
+        Launch demo modal
+      </button>
+      <LinkModal show={showLink} />
+*/

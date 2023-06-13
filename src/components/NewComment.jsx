@@ -1,5 +1,6 @@
 import handleSubmit from '../handles/handlesubmit';
 import { useRef } from 'react';
+import { serverTimestamp } from 'firebase/firestore';
 
 function NewComment (props) {
 	// Create references to the input fields
@@ -12,6 +13,7 @@ function NewComment (props) {
 		const comment = {
 			text: text.current.value,
 			user: user.current.value,
+      timestamp: serverTimestamp()
 		};
 
     handleSubmit("events/"+props.id+"/comments", comment);

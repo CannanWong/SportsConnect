@@ -6,7 +6,11 @@ function CommentsList(props) {
 	} else {
 		return (
 			<div>
-				{props.comments.map(item => <div> <CommentListElem comment={item[0]} /> <br/> </div>)}
+				{props.comments.sort((a,b)=> {
+					const aTime = b[0].timestamp == null ? Number.MAX_VALUE : b[0].timestamp.seconds
+					const bTime = a[0].timestamp == null ? Number.MAX_VALUE : a[0].timestamp.seconds
+					return aTime - bTime})
+					.map(item => <div> <CommentListElem comment={item[0]} /> <br/> </div>)}
 			</div>
 		);
 	}	
