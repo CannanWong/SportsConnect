@@ -12,7 +12,7 @@ function ViewToggle(props) {
           {({ selected }) => (
             <button
               className={
-                selected ? 'btn btn-primary' : 'btn btn-outline-primary'
+                selected ? 'btn btn-warning' : 'btn btn-outline-warning'
               }
             >
               List View
@@ -23,7 +23,7 @@ function ViewToggle(props) {
           {({ selected }) => (
             <button
               className={
-                selected ? 'btn btn-primary' : 'btn btn-outline-primary'
+                selected ? 'btn btn-warning' : 'btn btn-outline-warning'
               }
             >
               Map View

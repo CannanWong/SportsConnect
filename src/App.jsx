@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ViewToggle from "./components/ViewToggle";
 import { fetchDocs } from "./handles/fetchDocs";
 import 'bootstrap/dist/css/bootstrap.css';
+import "./App.css";
 
 function App(props) {
   const [events, setEvents] = useState([]);
@@ -11,8 +12,7 @@ function App(props) {
 	}, [])
 
   return (
-    <div className="container-fluid text-center">
-      <hr/>
+    <div className="container-fluid text-center p-3 mb-2 bg-rice text-dark">
       <br/>
 			<div className="row justify-content-center">
 				<div className="col-6"> 
@@ -21,10 +21,7 @@ function App(props) {
           <ViewToggle events={events} google={props.google} />
         </div>
       </div>
-      <hr/>
-      <br/>
-      <br/>
-      <hr/>
+      <hr style={{width: "100%"}}/>
       <br/>
     </div>
   );
