@@ -1,9 +1,11 @@
 import { Tab } from '@headlessui/react'
 import EventsList from "./EventsList";
 import EventsMap from "./EventsMap";
-import { Fragment } from 'react';
+import { Fragment, useState } from "react";
 
 function ViewToggle(props) {
+	const [events, setEvents] = useState(props.allEvents);
+	
 	return (
 		<Tab.Group>
 			<div style={{ alignContent: "start", justifyContent: "start" }}>
@@ -35,14 +37,16 @@ function ViewToggle(props) {
 			<br/>
 			<Tab.Panels>
 				<Tab.Panel>
-					<EventsList events={props.events} />
+					<EventsList events={events} />
 				</Tab.Panel>
 				<Tab.Panel>
 					<EventsMap 
-						events={props.events} 
+						allEvents={props.allEvents}
+						events={events}
+						setEvents={setEvents} 
 						google={props.google}
 						initialCenter={{ lat: 51.506729, lng: -0.171589 }} // Specify initial center coordinates
-						/>
+					/>
 				</Tab.Panel>
 			</Tab.Panels>
 		</Tab.Group>

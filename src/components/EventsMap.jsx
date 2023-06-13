@@ -1,12 +1,31 @@
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Filters from "./Filters";
+import { distance } from "../handles/distance";
 
 function EventsMap(props) {
 	const mapRef = useRef(null);
 	const autocompleteRef = useRef(null);
 	const navigate = useNavigate();
+
+	const allSports = new Set(props.allEvents.map(event => event[0].sport).filter(sport => sport != null));
+	const [filters, setFilters] = useState({sports: new Set(), distance: 10.5, date: "", startTime: "", endTime: ""});
+
+	const filterFunc = (event) => {
+		return (
+			(filters.sports.size === 0 || filters.sports.has(event[0].sport)) &&
+			(filters.distance > 10 || 
+				(!autocompleteRef.current || !autocompleteRef.current.getPlace() || !autocompleteRef.current.getPlace().geometry || !autocompleteRef.current.getPlace().geometry.location ||
+					filters.distance >= 
+						distance(event[0].location, autocompleteRef.current.getPlace().geometry.location))) &&
+			(filters.date === "" || filters.date === event[0].date) &&
+			(filters.startTime === "" || filters.startTime < event[0].endTime) &&
+			(filters.endTime === "" || filters.endTime > event[0].startTime)
+		)
+	}
+
+	const filteredEvents = props.allEvents.filter(filterFunc);
 
 	const handleScriptLoad = () => {
     const autocompleteInput = document.getElementById('autocomplete-input-eventsMap');
@@ -39,7 +58,7 @@ function EventsMap(props) {
 					/>
 				</div>
 				<div className='col-4'>
-      		<Filters events={props.events} />
+      		<Filters searchLocation={autocompleteRef} filters={filters} setFilters={setFilters} sports={allSports} />
 				</div>
 			</div>
 			<br />
@@ -55,7 +74,7 @@ function EventsMap(props) {
 					style={{ overflowX: "hidden", overflowY: "hidden" }}
 					containerStyle={{ maxWidth: "80%", maxHeight: "80%" }}
 				>
-					{props.events.map(item => 
+					{filteredEvents.map(item => 
 						<Marker
 							position={{ lat: item[0].location.latitude, lng: item[0].location.longitude }}
 							onClick={() => goToEvent(item[1])}
