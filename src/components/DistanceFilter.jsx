@@ -1,10 +1,9 @@
-import { useState } from "react";
-
 function DistanceFilter(props) {
-	const [dist, setDist] = useState(10.5);
+	const dist = props.filters.distance;
 
   const handleSliderChange = (event) => {
-    setDist(event.target.value);
+		const dist = event.target.value;
+		props.setFilters({ ...props.filters, distance: dist });
   };
 
   return (
@@ -14,6 +13,15 @@ function DistanceFilter(props) {
   		</button>
 			<ul class="dropdown-menu">
 				<li>
+					{/* {props.searchLocation.current === null || props.searchLocation.current.getPlace() === null ?
+					<label>Please search for a location before selecting search distance.</label> : null}
+					{props.searchLocation.current === null || props.searchLocation.current.getPlace() === null ?	
+					<input
+						type="range"
+						className="form-range"
+						id="distanceFilterSlider"
+						disabled
+					/> : */}
 					<input
 						type="range"
 						className="form-range"
