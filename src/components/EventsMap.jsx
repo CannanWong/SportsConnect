@@ -8,6 +8,7 @@ function EventsMap(props) {
 	const mapRef = useRef(null);
 	const autocompleteRef = useRef(null);
 	const navigate = useNavigate();
+	const [mapLocation, setMapLocation] = useState(null);
 
 	const allSports = new Set(props.allEvents.map(event => event[0].sport).filter(sport => sport != null));
 	const [filters, setFilters] = useState({sports: new Set(), distance: 10.5, date: "", startTime: "", endTime: ""});
@@ -15,10 +16,9 @@ function EventsMap(props) {
 	const filterFunc = (event) => {
 		return (
 			(filters.sports.size === 0 || filters.sports.has(event[0].sport)) &&
-			(filters.distance > 10 || 
-				(!autocompleteRef.current || !autocompleteRef.current.getPlace() || !autocompleteRef.current.getPlace().geometry || !autocompleteRef.current.getPlace().geometry.location ||
-					filters.distance >= 
-						distance(event[0].location, autocompleteRef.current.getPlace().geometry.location))) &&
+			(filters.distance > 10 || mapLocation === null ||	
+				filters.distance >= 
+						distance(event[0].location, mapLocation)) &&
 			// eslint-disable-next-line
 			(filters.date === "" || filters.date == event[0].date) &&
 			(filters.startTime === "" || filters.startTime < event[0].endTime) &&
@@ -39,9 +39,16 @@ function EventsMap(props) {
     if (place.geometry && place.geometry.location && mapRef.current) {
       const location = place.geometry.location;
       const newCenter = { lat: location.lat(), lng: location.lng() };
+			setMapLocation(newCenter);
       mapRef.current.panTo(newCenter);
     }
   };
+
+	const clearSelection = (e) => {
+		if (e.target.value === "") {
+			setMapLocation(null);
+		}
+	}
 
 	const goToEvent = (id) => {
 		navigate("/event", {state:{ entryId: id }})
@@ -54,12 +61,13 @@ function EventsMap(props) {
 					<input
 						id="autocomplete-input-eventsMap"
 						type="text"
-						placeholder="Search for a location"
+						placeholder="Search events near a location"
 						style={{ width: '100%', height: '40px', fontSize: '16px', padding: '0 10px' }}
+						onChange={clearSelection}
 					/>
 				</div>
 				<div className='col-4'>
-      		<Filters searchLocation={autocompleteRef} filters={filters} setFilters={setFilters} sports={allSports} />
+      		<Filters searchLocation={mapLocation} filters={filters} setFilters={setFilters} sports={allSports} />
 				</div>
 			</div>
 			<br />

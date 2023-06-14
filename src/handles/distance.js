@@ -1,8 +1,8 @@
 export function distance (eventLoc, mapLoc) {
     const lat1 = eventLoc.latitude
     const lon1 = eventLoc.longitude
-    const lat2 = mapLoc.lat()
-    const lon2 = mapLoc.lng()
+    const lat2 = mapLoc.lat
+    const lon2 = mapLoc.lng
 
     // Calculate distance between two points in km given their latitude and longitude
     // Haversine formula

@@ -35,7 +35,10 @@ function ViewToggle(props) {
 			<br/>
 			<Tab.Panels>
 				<Tab.Panel>
-					<EventsList events={props.allEvents} />
+					<EventsList 
+						allEvents={props.allEvents} 
+						google={props.google}
+					/>
 				</Tab.Panel>
 				<Tab.Panel>
 					<EventsMap 
