@@ -32,7 +32,7 @@ function Navbar() {
       <ul className="navbar-nav mx-4">
           <li className="nav-item">
             <Link to="newEvent" className="nav-link">
-              <button class="btn btn-light btn-outline-dark my-2 my-sm-0" type="submit">Add events</button>
+              <button class="btn btn-light btn-outline-dark my-2 my-sm-0" type="submit">Create Event</button>
             </Link>
           </li>
         </ul>
