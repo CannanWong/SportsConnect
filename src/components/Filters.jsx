@@ -4,14 +4,12 @@ import DistanceFilter from "./DistanceFilter";
 import DateFilter from "./DateFilter";
 
 function Filters(props) {
-	// Get all sports from events list and put them in a set to remove duplicates and no null values
-	const sports = new Set(props.events.map(event => event[0].sport).filter(sport => sport != null));
 	return (
 		<div class="btn-group" role="group">
-  			<SportsFilter sports={sports} />
-				<DistanceFilter />
-				<DateFilter />
-				<TimeFilter />
+  			<SportsFilter filters={props.filters} setFilters={props.setFilters} sports={props.sports} />
+				<DistanceFilter searchLocation={props.searchLocation} filters={props.filters} setFilters={props.setFilters} />
+				<DateFilter filters={props.filters} setFilters={props.setFilters} />
+				<TimeFilter filters={props.filters} setFilters={props.setFilters} />
 		</div>
 	)
 }

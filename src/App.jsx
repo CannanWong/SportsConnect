@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
 import ViewToggle from "./components/ViewToggle";
-import { fetchDocs } from "./handles/fetchDocs";
 import 'bootstrap/dist/css/bootstrap.css';
+import { useEffect, useState } from "react";
+import { fetchDocs } from "./handles/fetchDocs";
 
 function App(props) {
-  const [events, setEvents] = useState([]);
+	const [allEvents, setAllEvents] = useState([]);
 
   useEffect(() => {
     // populates events array with all events from database
-		fetchDocs('events', setEvents);
-	}, [])
+    fetchDocs('events', setAllEvents);
+  }, []);
     
   // sort events by time, then by date -> chronological order
-  events.sort(timeComparator);
-  events.sort(dateComparator);
+  allEvents.sort(timeComparator);
+  allEvents.sort(dateComparator);
 
   // Used once to change format of dates in database
   // const fixDates = () => {
@@ -38,7 +38,7 @@ function App(props) {
 				<div className="col-6"> 
           <h2>EVENTS</h2>
           <br/>
-          <ViewToggle events={events} google={props.google} />
+          <ViewToggle allEvents={allEvents} google={props.google} />
         </div>
       </div>
       <hr/>
