@@ -19,7 +19,8 @@ function EventsMap(props) {
 				(!autocompleteRef.current || !autocompleteRef.current.getPlace() || !autocompleteRef.current.getPlace().geometry || !autocompleteRef.current.getPlace().geometry.location ||
 					filters.distance >= 
 						distance(event[0].location, autocompleteRef.current.getPlace().geometry.location))) &&
-			(filters.date === "" || filters.date === event[0].date) &&
+			// eslint-disable-next-line
+			(filters.date === "" || filters.date == event[0].date) &&
 			(filters.startTime === "" || filters.startTime < event[0].endTime) &&
 			(filters.endTime === "" || filters.endTime > event[0].startTime)
 		)
