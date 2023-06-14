@@ -6,6 +6,7 @@ import EventLocationMap from './components/EventLocationMap';
 import { modifyCount } from './handles/modifyCount';
 import CommentSection from './components/CommentSection'
 import { fetchDocs } from './handles/fetchDocs';
+import ParticipantsList from './components/ParticipantsList';
 
 function Event(props) {
   const key = useLocation().state
@@ -13,12 +14,13 @@ function Event(props) {
   const [count, setCount] = useState([])
   const [interested, setInterested] = useState(true)
   const [comments, setComments] = useState([])
-  //const [showLink, setShow] = useState(false)
+  const [participants, setParticipants] = useState([])
   const id = key.entryId
 
   useEffect(() => {
 		fetchEvent(id, setCurrEvent, setCount)
     fetchDocs("events/"+id+"/comments", setComments)
+    fetchDocs("events/"+id+"/participants", setParticipants)
 	}, [id])
 
   return (
@@ -28,18 +30,24 @@ function Event(props) {
         <div className="card"> 
           <div className="card-body">
             <div className="row">
+              {/* Event detail container */}
               <div className="col">
                 <div className="container text-left justify-content-center">
                   <div className="d-flex justify-content-between">
-                    <h2 className="card-title">{currEvent.title}</h2>
+                    <h1 className="card-title">{currEvent.title}</h1>
                     <h4 className="card-text float-end text-danger">
                     <img src={require("./heart.png")} width="30" height="30" alt="Interested "/>{" : "+count+" !"}</h4>
                   </div>
-                  <br/>
                   <h4 className="d-flex card-subtitle mb-2 text-body-secondary">{currEvent.date} From: {currEvent.startTime} To: {currEvent.endTime}</h4>
-                  <p className="d-flex card-text">{currEvent.description}</p>
+                  <br/>
+                  <p className="d-flex card-text overflow-auto">{currEvent.description}</p>
+                  <div className="card text-left">
+                    <h5 className="mx-2 my-2">Participants:</h5>
+                    <ParticipantsList participants={participants} />
+                  </div>
                 </div>
               </div>
+              {/* Event location & interest & link container */}
               <div className="col">
                 {currEvent.location && 
                 <EventLocationMap 
@@ -51,7 +59,7 @@ function Event(props) {
                   <button 
                     class="btn btn-outline-danger w-100" 
                     data-bs-toggle="button" 
-                    onClick={() => modifyCount(key.entryId, interested, setCount, setInterested)} >
+                    onClick={() => modifyCount(key.entryId, interested, setCount, setInterested, setParticipants)} >
                     I'm interested!!
                     <img src={require("./heart.png")} width="25" height="25" alt="Interested "/>
                   </button>
@@ -64,7 +72,6 @@ function Event(props) {
       </div>
       <br/>
       <CommentSection comments={comments} id={id} />
-      <br/>
     </div>
   );
 }

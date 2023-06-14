@@ -1,18 +1,19 @@
 import handleSubmit from '../handles/handlesubmit';
 import { useRef } from 'react';
-import { serverTimestamp } from 'firebase/firestore';
+import { doc, getDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from "../firebase_setup/firebase";
 
 function NewComment (props) {
 	// Create references to the input fields
 	const text = useRef();
-	const user = useRef();
 	
-	const submithandler = (e) => {
+	const submithandler = async (e) => {
     e.preventDefault();
 		// Create an event object
+    const testUser = (await getDoc(doc(db, "presetUser", "testUser"))).data().name
 		const comment = {
 			text: text.current.value,
-			user: user.current.value,
+			user: testUser,
       timestamp: serverTimestamp()
 		};
 
@@ -20,7 +21,6 @@ function NewComment (props) {
 
 	  // Clear the form
 	  text.current.value = ""
-    user.current.value = ""
   };
  
   return (
@@ -30,14 +30,7 @@ function NewComment (props) {
 	        <form onSubmit={submithandler}>
 	        	<div className="row mx-3 my-2 justify-contents-center">
 	        		<div className="ml-auto" style={{width: "96%"}}>
-	        			<label className="form-label ml-auto">Comment:</label>
                 <textarea className="form-control" rows="3" ref={text}></textarea>
-	        		</div>
-	        	</div>
-	        	<div className="row mx-3 my-2 justify-contents-center">
-	        		<div className="ml-auto" style={{width: "96%"}}>
-	        			<label className="form-label">From:</label>
-	        			<input type= "text" className="form-control" ref={user} />
 	        		</div>
 	        	</div>
 	        	<div className="row my-4 justify-contents-center">

@@ -13,7 +13,6 @@ function User() {
         input.current.value = ""
     }
 
-
     return (
       <div className="card mx-auto" style={{width: "90%"}}> 
       <h1 className="card-title mx-auto">Preset User:</h1>
