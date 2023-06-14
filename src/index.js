@@ -10,6 +10,7 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import User from './User';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Route path="/" element={<App />} />
         <Route path="/event" element={<Event />} />
         <Route path="/newEvent" element={<NewEventForm />} />
+        <Route path="/user" element={<User />} />
       </Routes>
     </Router>
   </React.StrictMode>, document.getElementById('root')
