@@ -40,7 +40,10 @@ function EventsMap(props) {
       const location = place.geometry.location;
       const newCenter = { lat: location.lat(), lng: location.lng() };
 			setMapLocation(newCenter);
-      mapRef.current.panTo(newCenter);
+      
+			mapRef.current.panTo(newCenter);
+			// sleep to wait for map to pan
+			setTimeout(() => {mapRef.current.setZoom(14);} , 200);	
     }
   };
 

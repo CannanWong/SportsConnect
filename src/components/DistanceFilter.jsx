@@ -14,29 +14,22 @@ function DistanceFilter(props) {
 			<ul class="dropdown-menu">
 				<li>
 					{props.searchLocation === null ?
-					<label>Enter a location first</label> : null}
-					{props.searchLocation === null ?	
-					<input
-						type="range"
-						className="form-range"
-						id="distanceFilterSlider"
-						min="0.5"
-						max="10.5"
-						step="0.5"
-						value={dist}
-						disabled
-					/> :
-					<input
-						type="range"
-						className="form-range"
-						id="distanceFilterSlider"
-						min="0.5"
-						max="10.5"
-						step="0.5"
-						value={dist}
-						onChange={handleSliderChange}
-      		/>}
-					{dist > 10 ? <label>10+ km</label> : <label>{dist}km</label>}
+					<label>Enter a location first</label>
+					:
+					<div>
+						<input
+							type="range"
+							className="form-range"
+							id="distanceFilterSlider"
+							min="0.5"
+							max="10.5"
+							step="0.5"
+							value={dist}
+							onChange={handleSliderChange}
+							/>
+						{dist > 10 ? <label>Unlimited</label> : <label>{dist}km</label>}
+					</div>
+					}
 				</li>	
 			</ul>
 		</div>
