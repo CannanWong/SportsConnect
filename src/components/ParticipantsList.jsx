@@ -1,5 +1,5 @@
 function ParticipantsList(props) {
-	if (props.participants.length === 0) {
+	if (!props.participants) {
 		return <p className="mx-auto">Be the first one to join this event!</p>
 	} else {
 		return (

@@ -7,6 +7,7 @@ import { modifyCount } from './handles/modifyCount';
 import CommentSection from './components/CommentSection'
 import { fetchDocs } from './handles/fetchDocs';
 import ParticipantsList from './components/ParticipantsList';
+import QRCode from 'react-qr-code'
 
 function Event(props) {
   const key = useLocation().state
@@ -55,7 +56,7 @@ function Event(props) {
                   location={{ lat: currEvent.location.latitude, lng: currEvent.location.longitude }} 
                 />}
                 <br/>
-                <div class="d-grid gap-2">
+                <div class="d-grid gap-3">
                   <button 
                     class="btn btn-outline-danger w-100" 
                     data-bs-toggle="button" 
@@ -63,7 +64,14 @@ function Event(props) {
                     I'm interested!!
                     <img src={require("./heart.png")} width="25" height="25" alt="Interested "/>
                   </button>
-                  <a href={"//"+currEvent.grpLink} class="btn btn-outline-primary w-100" >Group Chat Link</a>
+                  <div className='row'>
+                    <div className='col-9 my-4'>
+                      <a href={"//"+currEvent.grpLink} class="btn btn-outline-primary w-100" >Group Chat Link</a>
+                    </div>
+                    <div className='col-2 mx-2'>
+                      <QRCode value={"//"+currEvent.grpLink} size={96}/>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

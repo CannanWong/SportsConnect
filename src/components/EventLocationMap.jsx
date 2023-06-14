@@ -9,7 +9,7 @@ function EventLocationMap(props) {
 				zoom={16}
 				initialCenter={props.location}
 				style={{ overflowX: "hidden", overflowY: "hidden" }}
-				containerStyle={{ maxWidth: "48%", maxHeight: "70%" }}
+				containerStyle={{ maxWidth: "48%", maxHeight: "60%" }}
 			>
 				<Marker
 						position={props.location}
