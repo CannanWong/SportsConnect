@@ -105,7 +105,7 @@ function NewEventForm (props) {
 			</div>
 		</div>
 		<div className="row my-4 align-items-center">
-				<button type = "submit" className='btn btn-primary'>Add Event</button>
+				<button type = "submit" className='btn btn-light border'>Add Event</button>
 		</div>
 	</form>
 

@@ -9,7 +9,7 @@ function DistanceFilter(props) {
 
   return (
 		<div class="dropdown">
-  		<button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+  		<button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
     		Search Distance
   		</button>
 			<ul class="dropdown-menu">
