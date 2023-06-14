@@ -12,6 +12,7 @@ function NewEventForm (props) {
 	const [location, setLocation] = useState();
 	const description = useRef();
 	const grpLink = useRef();
+	const sport = useRef();
 	
 	const submithandler = (e) => {
     e.preventDefault();
@@ -34,6 +35,7 @@ function NewEventForm (props) {
 			location: new GeoPoint(location.lat, location.lng),
 			description: description.current.value,
 			grpLink: grpLink.current.value,
+			sport: sport.current.value,
 			count: 0
 		};
 
@@ -48,6 +50,7 @@ function NewEventForm (props) {
 		setLocation(null);
 		description.current.value = ""
 		grpLink.current.value = ""
+		sport.current.value = ""
   };
 
   // const handleLocationChange = (newLocation) => {
@@ -66,6 +69,12 @@ function NewEventForm (props) {
 			<div className="col-12">
 				<label className="form-label">Event Title:</label>
 				<input type= "text" className="form-control" ref={title} />
+			</div>
+		</div>
+		<div className="row my-4 align-items-center">
+			<div className="col-12">
+				<label className="form-label">Sport:</label>
+				<input type= "text" className="form-control" ref={sport} />
 			</div>
 		</div>
 		<div className="row my-4 align-items-center">
