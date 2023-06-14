@@ -12,7 +12,7 @@ function EventLocationMap(props) {
 				containerStyle={{ maxWidth: "48%", maxHeight: "60%" }}
 			>
 				<Marker
-						position={props.location}
+					position={props.location}
 				/>
 			</Map>
 			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

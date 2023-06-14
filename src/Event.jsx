@@ -42,9 +42,6 @@ function Event(props) {
                   <h4 className="d-flex card-subtitle mb-2 text-body-secondary">{currEvent.date} From: {currEvent.startTime} To: {currEvent.endTime}</h4>
                   <hr/>
                   <p className="d-flex card-text overflow-auto">{currEvent.description}</p>
-                  <hr/>
-                    <h4 className="my-2 text-left">Participants:</h4>
-                    <ParticipantsList participants={participants} />
                 </div>
               </div>
               {/* Event location & interest & link container */}
@@ -77,6 +74,8 @@ function Event(props) {
           </div>
         </div>
       </div>
+      <br/>
+      <ParticipantsList participants={participants} />
       <br/>
       <CommentSection comments={comments} id={id} />
       <br/>
