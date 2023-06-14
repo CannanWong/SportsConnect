@@ -1,4 +1,4 @@
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Filters from "./Filters";
@@ -9,6 +9,23 @@ function EventsMap(props) {
 	const autocompleteRef = useRef(null);
 	const navigate = useNavigate();
 	const [mapLocation, setMapLocation] = useState(null);
+	const infoWindowRef = useRef(null);
+
+	const [activeMarker, setActiveMarker] = useState(null);
+  const [showInfoWindow, setShowInfoWindow] = useState(false);
+	const [activeEvent, setActiveEvent] = useState(null);
+
+  const handleMarkerClick = (props, marker, event) => {
+    setActiveMarker(marker);
+    setShowInfoWindow(true);
+		setActiveEvent(event);
+  };
+
+  const handleInfoWindowClose = () => {
+    setActiveMarker(null);
+		setActiveEvent(null);
+    setShowInfoWindow(false);
+  };
 
 	const allSports = new Set(props.allEvents.map(event => event[0].sport).filter(sport => sport != null));
 	const [filters, setFilters] = useState({sports: new Set(), distance: 10.5, date: "", startTime: "", endTime: ""});
@@ -88,10 +105,35 @@ function EventsMap(props) {
 				>
 					{filteredEvents.map(item => 
 						<Marker
+							key={item[1]}
 							position={{ lat: item[0].location.latitude, lng: item[0].location.longitude }}
-							onClick={() => goToEvent(item[1])}
+							onClick={(props, marker) => handleMarkerClick(props, marker, item)}
 						/>
 					)}
+					<InfoWindow
+						marker={activeMarker}
+						visible={showInfoWindow}
+						onClose={handleInfoWindowClose}
+						maxWidth={200}
+						ref={infoWindowRef}
+						onOpen={() => {
+							const goToEventBtn = document.getElementById('goToEventBtn');
+							if (goToEventBtn) {
+								goToEventBtn.addEventListener('click', () => {
+									goToEvent(activeEvent[1]);
+								});
+							}
+						}}
+					>
+						{activeEvent && (
+							<div>
+								<h5>{activeEvent[0].title}</h5>
+								<p>{activeEvent[0].date}</p>
+								<p>{activeEvent[0].startTime} - {activeEvent[0].endTime}</p>
+								<button className="btn btn-warning" id="goToEventBtn">Go To Event Page</button>
+							</div>
+						)}
+					</InfoWindow>
 				</Map>
 			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

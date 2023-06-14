@@ -29,7 +29,7 @@ function EventsList(props) {
 	}
 
 	const filteredEvents = props.allEvents.filter(filterFunc);
-	const displayEvents = mapLocation === null ? 
+	const displayEvents = mapLocation === null || filters.distance <= 10 ? 
 													filteredEvents : 
 													filteredEvents.sort((a, b) => 
 														distance(a[0].location, mapLocation) - distance(b[0].location, mapLocation)	);
