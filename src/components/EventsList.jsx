@@ -52,7 +52,7 @@ function EventsList(props) {
 	return (
 		<div>
 			<div className='row justify-content-start align-items-start'>
-				<div className='col'>
+				<div className='col' style={{ marginBottom: '8px' }}>
 					<input
 						id="autocomplete-input-eventsMap"
 						type="text"
