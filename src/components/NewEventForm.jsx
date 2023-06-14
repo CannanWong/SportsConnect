@@ -58,6 +58,8 @@ function NewEventForm (props) {
 		//  className="row g-3 align-items-center">
 		<div className="row justify-content-center text-center">
 			<div className="col-6"> 
+					<br/>
+					<br/>
 					<h2>ADD NEW EVENT</h2>
 	<form onSubmit={submithandler}>
 		<div className="row my-4 align-items-center">

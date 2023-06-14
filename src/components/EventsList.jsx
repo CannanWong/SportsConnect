@@ -64,6 +64,7 @@ function EventsList(props) {
 				</div>
 			<div className='row justify-content-start align-items-start'>
 				<div className='col'>
+					<br/>
 					<Filters searchLocation={mapLocation} filters={filters} setFilters={setFilters} sports={allSports} />
 				</div>
 			</div>
