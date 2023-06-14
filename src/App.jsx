@@ -1,42 +1,22 @@
-import { useEffect, useState } from "react";
 import ViewToggle from "./components/ViewToggle";
-import { fetchDocs } from "./handles/fetchDocs";
 import 'bootstrap/dist/css/bootstrap.css';
 import "./App.css";
+import { useEffect, useState } from "react";
+import { fetchDocs } from "./handles/fetchDocs";
 
 function App(props) {
-  const [events, setEvents] = useState([]);
+	const [allEvents, setAllEvents] = useState([]);
 
   useEffect(() => {
-		fetchDocs('events', setEvents);
-    // events is now populated
-	}, [])
+    // populates events array with all events from database
+    fetchDocs('events', setAllEvents);
+  }, []);
     
-  // sort events by time
-    events.sort((a, b) => {
-        const timeA = a[0].startTime;
-        const timeB = b[0].startTime;
+  // sort events by time, then by date -> chronological order
+  allEvents.sort(timeComparator);
+  allEvents.sort(dateComparator);
 
-      // Split the times into hours and minutes
-      const [hoursA, minutesA] = timeA.split(":");
-      const [hoursB, minutesB] = timeB.split(":");
-    
-      // Convert hours and minutes to numbers for comparison
-      const timeValueA = parseInt(hoursA, 10) * 60 + parseInt(minutesA, 10);
-      const timeValueB = parseInt(hoursB, 10) * 60 + parseInt(minutesB, 10);
-    
-      // Compare the time values
-      return timeValueA - timeValueB;
-    });
-
-  // sort events by date 
-    events.sort((a, b) => {
-      const dateA = new Date(a[0].date);
-      const dateB = new Date(b[0].date);
-      return dateA - dateB;
-    });
-
-  // used once to change format of dates in database
+  // Used once to change format of dates in database
   // const fixDates = () => {
   //   events.forEach(async event => {
   //     const formattedDate = new Date(event[0].date).toLocaleDateString('en-GB', {
@@ -58,7 +38,7 @@ function App(props) {
 				<div className="col-6"> 
           <h2>EVENTS</h2>
           <br/>
-          <ViewToggle events={events} google={props.google} />
+          <ViewToggle allEvents={allEvents} google={props.google} />
         </div>
       </div>
       <hr style={{width: "100%"}}/>
@@ -67,4 +47,26 @@ function App(props) {
   );
 }
  
+function dateComparator(a, b) {
+  const dateA = new Date(a[0].date);
+  const dateB = new Date(b[0].date);
+  return dateA - dateB;
+}
+
+function timeComparator(a, b) {
+  const timeA = a[0].startTime;
+  const timeB = b[0].startTime;
+
+  // Split the times into hours and minutes
+  const [hoursA, minutesA] = timeA.split(":");
+  const [hoursB, minutesB] = timeB.split(":");
+
+  // Convert hours and minutes to numbers for comparison
+  const timeValueA = parseInt(hoursA, 10) * 60 + parseInt(minutesA, 10);
+  const timeValueB = parseInt(hoursB, 10) * 60 + parseInt(minutesB, 10);
+
+  // Compare the time values
+  return timeValueA - timeValueB;
+}
+
 export default App;
