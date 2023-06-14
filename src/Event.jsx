@@ -40,12 +40,11 @@ function Event(props) {
                     <img src={require("./heart.png")} width="30" height="30" alt="Interested "/>{" : "+count+" !"}</h4>
                   </div>
                   <h4 className="d-flex card-subtitle mb-2 text-body-secondary">{currEvent.date} From: {currEvent.startTime} To: {currEvent.endTime}</h4>
-                  <br/>
+                  <hr/>
                   <p className="d-flex card-text overflow-auto">{currEvent.description}</p>
-                  <div className="card text-left">
-                    <h5 className="mx-2 my-2">Participants:</h5>
+                  <hr/>
+                    <h4 className="my-2 text-left">Participants:</h4>
                     <ParticipantsList participants={participants} />
-                  </div>
                 </div>
               </div>
               {/* Event location & interest & link container */}
@@ -66,7 +65,7 @@ function Event(props) {
                   </button>
                   <div className='row'>
                     <div className='col-9 my-4'>
-                      <a href={"//"+currEvent.grpLink} class="btn btn-outline-primary w-100" >Group Chat Link</a>
+                      <div class="card w-100 h-40 border-primary text-center text-primary" style={{textDecoration: "none"}}><p className='my-1'> Group Chat: {currEvent.grpLink}</p></div>
                     </div>
                     <div className='col-2 mx-2'>
                       <QRCode value={"//"+currEvent.grpLink} size={96}/>
@@ -80,6 +79,8 @@ function Event(props) {
       </div>
       <br/>
       <CommentSection comments={comments} id={id} />
+      <br/>
+      <br/>
     </div>
   );
 }
