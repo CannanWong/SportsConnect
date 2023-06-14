@@ -35,6 +35,11 @@ function Navbar() {
               <button class="btn btn-light btn-outline-dark my-2 my-sm-0" type="submit">Create Event</button>
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to="user" className="nav-link my-1">
+              <img src={require("./settings.png")} width="30" height="30" alt="Interested "/>
+            </Link>
+          </li>
         </ul>
     </nav>
   );
