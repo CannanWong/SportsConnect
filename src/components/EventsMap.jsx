@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Filters from "./Filters";
 import { distance } from "../handles/distance";
+import { mapStyle } from '../utils/mapStyle';
 
 function EventsMap(props) {
 	const mapRef = useRef(null);
@@ -102,6 +103,10 @@ function EventsMap(props) {
 					}}
 					style={{ overflowX: "hidden", overflowY: "hidden" }}
 					containerStyle={{ maxWidth: "80%", maxHeight: "80%" }}
+					styles={mapStyle()}
+					streetViewControl={false}
+					fullscreenControl={false}
+					mapTypeControl={false}
 				>
 					{filteredEvents.map(item => 
 						<Marker

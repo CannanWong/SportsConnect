@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { mapStyle } from '../utils/mapStyle';
 
 function LocationPicker(props) {
   const mapRef = useRef(null);
@@ -45,6 +46,10 @@ function LocationPicker(props) {
 				}}
 				style={{ overflowX: "hidden", overflowY: "hidden" }}
 				containerStyle={{ maxWidth: "48.7%", maxHeight: "400px" }}
+				styles={mapStyle()}
+				streetViewControl={false}
+				fullscreenControl={false}
+				mapTypeControl={false}
 			>
 				{props.position && (
 					<Marker

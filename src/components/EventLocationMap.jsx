@@ -1,4 +1,5 @@
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { mapStyle } from '../utils/mapStyle';
 
 // Usage: <EventLocationMap google=props.google, location={{ lat: event.location.latitude, lng: event.location.longitude }} />
 function EventLocationMap(props) {
@@ -10,6 +11,10 @@ function EventLocationMap(props) {
 				initialCenter={props.location}
 				style={{ overflowX: "hidden", overflowY: "hidden" }}
 				containerStyle={{ maxWidth: "48%", maxHeight: "60%" }}
+				styles={mapStyle()}
+				streetViewControl={false}
+				fullscreenControl={false}
+				mapTypeControl={false}
 			>
 				<Marker
 					position={props.location}
