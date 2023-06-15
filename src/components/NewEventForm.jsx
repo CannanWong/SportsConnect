@@ -13,25 +13,6 @@ function NewEventForm (props) {
 	const description = useRef();
 	const grpLink = useRef();
 	const sport = useRef();
-
-	// useEffect(() => {
-	// 	// Fetch all the forms we want to apply custom Bootstrap validation styles to
-	// 	const forms = document.querySelectorAll('.needs-validation')
-	
-	// 	// Loop over them and prevent submission
-	// 	Array.from(forms).forEach(form => {
-	// 		form.addEventListener('submit', event => {
-	// 			if (!form.checkValidity()) {
-	// 				event.preventDefault()
-	// 				event.stopPropagation()
-	// 				return
-	// 			}
-	
-	// 			form.classList.add('was-validated')
-	// 		}, false)
-	// 	})
-	// }, [])
-		
 	
 	const submithandler = (e) => {
     e.preventDefault();
@@ -91,12 +72,7 @@ function NewEventForm (props) {
 
   };
 
-  // const handleLocationChange = (newLocation) => {
-  //   setLocation(newLocation);
-  // };
- 
   return (
-		//  className="row g-3 align-items-center">
 		<div className="row justify-content-center text-center">
 			<div className="col-6"> 
 				<br/>
