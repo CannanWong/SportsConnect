@@ -22,10 +22,10 @@ function Navbar() {
             <Link to="/" class="nav-link text-white">Home</Link>
           </li>
           <li class ="nav-item">
-            <Link class="nav-link text-white">My Events</Link>
+            <Link to="/" class="nav-link text-white">My Events</Link>
           </li>
           <li class="nav-item">
-            <Link class="nav-link text-white">Previous Events</Link>
+            <Link to="/" class="nav-link text-white">Previous Events</Link>
           </li>
         </ul>
       </div>
